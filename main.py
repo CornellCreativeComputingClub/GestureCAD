@@ -1,4 +1,4 @@
-import handy
+import handy.handy as handy
 import cv2
 import math
 from gestureControl import drag_mouse
