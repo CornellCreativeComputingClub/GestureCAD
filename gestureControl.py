@@ -26,13 +26,21 @@ end_pan()
 # To zoom, spin your mouse wheel forward or backward,
 # and while doing so, pay attention to where your cursor is (that’s where the zoom center is)!
 # Also, note that you can access your preferences to reverse the default zoom direction
-# def zoom_in(clicks):
-#     ag.scroll(clicks)
-# def zoom_out(clicks):
-#     ag.scroll(-clicks)
-#
-# zoom_in(100)
-# zoom_out(100)
+def zoom_in(clicks):
+    # need to tween
+    currentMouseX, currentMouseY = ag.position()
+    ag.scroll(clicks, currentMouseX, currentMouseY)
+
+def zoom_out(clicks):
+    currentMouseX, currentMouseY =  ag.position()
+    ag.scroll(-clicks, currentMouseX, currentMouseY)
+
+# if 
+for i in range(1,10):
+    ag.PAUSE =.1
+    zoom_in(100)
+for i in range(1, 10):
+    zoom_out(100)
 
 # To orbit, click and hold the orbit shortcut ( SHIFT key) on your keyboard.
 # At the same time, you hold the mouse wheel button, then move the mouse.
