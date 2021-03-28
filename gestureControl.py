@@ -2,25 +2,31 @@ import pyautogui as ag
 import cv2
 
 ag.PAUSE = .5
-screenWidth, screenHeight = ag.size() # Get the size of the primary monitor.
-currentMouseX, currentMouseY = ag.position() # Get the XY position of the mouse.
-ag.sleep(1.5) # to allow me to change tabs to fusion360
+screenWidth, screenHeight = ag.size()  # Get the size of the primary monitor.
+# Get the XY position of the mouse.
+currentMouseX, currentMouseY = ag.position()
+# ag.sleep(1.5) # to allow me to change tabs to fusion360
 
 # To pan, click and hold the mouse wheel button, and move your mouse from side-to-side.
 # or can right click, then click on pan, then drag mouse, then hit return
 # TODO: won't work if dragging over non-background area, though that might not be a problem if user can position "mouse"
+
+
 def begin_pan(distance):
     ag.rightClick()
-    x, y = ag.locateCenterOnScreen('pan.png', confidence=.5) #arbitrary confidence threshold
+    # arbitrary confidence threshold
+    x, y = ag.locateCenterOnScreen('pan.png', confidence=.5)
     ag.leftClick(x, y)
-    ag.drag(distance, 0, duration=.5)
-    ag.drag(-distance, 0, duration=.5)
+    ag.drag(distance, 0, duration=.1)
+    ag.drag(-distance, 0, duration=.1)
+
+
+def drag_mouse(distance):
+    ag.moveRel(distance, 0, duration=0)
+
 
 def end_pan():
     ag.hotkey("return")
-
-begin_pan(300)
-end_pan()
 
 
 # To zoom, spin your mouse wheel forward or backward,
@@ -35,7 +41,6 @@ def zoom_out(clicks):
     currentMouseX, currentMouseY =  ag.position()
     ag.scroll(-clicks, currentMouseX, currentMouseY)
 
-# if 
 for i in range(1,10):
     ag.PAUSE =.1
     zoom_in(100)
@@ -49,4 +54,3 @@ for i in range(1, 10):
 # ag.keyDown("shift")
 #
 # ag.keyUp("shift")
-
