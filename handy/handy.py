@@ -78,5 +78,6 @@ def locate_object(frame, object_hist):
 
 
 def detect_hand(frame, hist):
+    frame = cv2.flip(frame, 1)
     detected_hand, masked, raw = locate_object(frame, hist)
     return Hand(detected_hand, masked, raw, frame)

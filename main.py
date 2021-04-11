@@ -1,7 +1,7 @@
 import handy.handy as handy
 import cv2
 import math
-from gestureControl import drag_mouse
+from gestureControl import *
 
 # getting video feed from webcam
 cap = cv2.VideoCapture(0)
@@ -18,6 +18,8 @@ while True:
     ret, frame = cap.read()
     if not ret:
         break
+
+    frame = cv2.resize(frame, (1920, 1080))
 
     # to block a faces in the video stream, set block=True.
     # if you just want to detect the faces, set block=False
@@ -82,7 +84,11 @@ while True:
 
     # Press 'k' to start panning
     if k == ord('k'):
-        drag_mouse(sensitivity * (angle - lastAngle))
+        #drag_mouse(sensitivity * (angle - lastAngle))
+        try:
+            move_cursor(com[0], com[1])
+        except TypeError:
+            pass
 
     lastAngle = angle
 

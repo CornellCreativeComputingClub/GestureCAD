@@ -20,6 +20,10 @@ def begin_pan(distance):
     ag.drag(distance, 0, duration=.1)
     ag.drag(-distance, 0, duration=.1)
 
+def move_cursor(x, y):
+    ag.moveTo(x, y)
+
+#def pan(x, y):
 
 def drag_mouse(distance):
     ag.moveRel(distance, 0, duration=0)
